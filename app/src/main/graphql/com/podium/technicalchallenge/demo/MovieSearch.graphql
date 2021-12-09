@@ -1,0 +1,13 @@
+query MovieSearch($limit: Int, $orderBy: String, $sort: Sort) {
+  movies (
+    limit: $limit,
+    orderBy: $orderBy,
+    sort: $sort
+  ) {
+    __typename
+    id
+    title
+    voteAverage
+
+  }
+}

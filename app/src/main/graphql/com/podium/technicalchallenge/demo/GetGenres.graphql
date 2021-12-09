@@ -1,0 +1,17 @@
+query GetAllGenres {
+  genres
+}
+
+query GenreSearch($genre: String, $limit: Int, $orderBy: String, $sort: Sort) {
+  movies (
+    limit: $limit,
+    orderBy: $orderBy,
+    sort: $sort,
+    genre: $genre
+  ) {
+    __typename
+    id
+    title
+    voteAverage
+  }
+}

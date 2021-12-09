@@ -4,13 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.podium.technicalchallenge.DemoViewModel
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.podium.technicalchallenge.databinding.FragmentTop5Binding
 
 class Top5Fragment : Fragment() {
-    private val viewModel: DemoViewModel by activityViewModels()
+    private val viewModel: Top5ViewModel by activityViewModels()
     private var _binding: FragmentTop5Binding? = null
     private val binding get() = _binding!!
 
@@ -21,6 +23,17 @@ class Top5Fragment : Fragment() {
     ): View {
         _binding = FragmentTop5Binding.inflate(inflater)
 
+        binding.top5Recycler.addItemDecoration(
+            DividerItemDecoration(
+                requireActivity(),
+                LinearLayout.VERTICAL
+            )
+        )
+
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(binding.top5Recycler)
+
+        binding.viewModel = viewModel
         return binding.root
     }
 

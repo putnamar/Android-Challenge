@@ -19,6 +19,8 @@ class DemoViewModel : ViewModel() {
             when (result) {
                 is Result.Success<GetMoviesQuery.Data?> -> {
                     Log.d(TAG, "movies= " + result.data)
+
+
                 }
                 else -> {
                     Log.e(TAG, "movies= " + result)
