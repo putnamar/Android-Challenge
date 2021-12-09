@@ -63,17 +63,21 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.9'
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.0")
-    implementation("androidx.navigation:navigation-fragment-ktx:2.4.0-beta02")
-    implementation "androidx.navigation:navigation-compose:2.4.0-beta02"
-    implementation("androidx.navigation:navigation-ui-ktx:2.4.0-beta02")
+
+    def nav_version = "2.4.0-beta02"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
+
     implementation 'androidx.test.ext:junit-ktx:1.1.3'
     implementation 'com.google.android.datatransport:transport-runtime:3.1.1'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
 
-    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:4.0.0'
-    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:4.0.0'
-    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-viewpager2:4.0.0'
-    implementation 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-paging:4.0.0'
+    def binding_collection_version = "4.0.0"
+    implementation "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:$binding_collection_version"
+    implementation "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:$binding_collection_version"
+    implementation "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-viewpager2:$binding_collection_version"
+    implementation "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-paging:$binding_collection_version"
 
     //test
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

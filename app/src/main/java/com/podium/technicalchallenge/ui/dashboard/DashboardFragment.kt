@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.Navigation
 import com.google.android.material.navigation.NavigationBarView
 import com.podium.technicalchallenge.DemoViewModel
 import com.podium.technicalchallenge.R
@@ -38,12 +39,15 @@ class DashboardFragment : Fragment(), NavigationBarView.OnItemSelectedListener {
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.top_5 -> {
+                Navigation.findNavController(binding.root).navigate(R.id.navigation_top5)
                 true
             }
             R.id.genre -> {
+                Navigation.findNavController(binding.root).navigate(R.id.navigation_genre)
                 true
             }
             R.id.all -> {
+                Navigation.findNavController(binding.root).navigate(R.id.navigation_browse)
                 true
             }
             R.id.search -> {

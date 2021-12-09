@@ -3,18 +3,77 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_dashboard">
+    app:startDestination="@+id/navigation_top5">
 
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.podium.technicalchallenge.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+    <!--    <fragment-->
+    <!--        android:id="@+id/navigation_dashboard"-->
+    <!--        android:name="com.podium.technicalchallenge.ui.dashboard.DashboardFragment"-->
+    <!--        android:label="@string/title_dashboard"-->
+    <!--        tools:layout="@layout/fragment_dashboard">-->
+    <!--        -->
+    <!--    </fragment>-->
 
     <fragment
         android:id="@+id/navigation_top5"
         android:name="com.podium.technicalchallenge.ui.top5.Top5Fragment"
         android:label="@string/title_top_5"
-        tools:layout="@layout/fragment_top5" />
+        tools:layout="@layout/fragment_top5">
 
+        <action
+            android:id="@+id/action_genre"
+            app:destination="@id/navigation_genre"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_browse"
+            app:destination="@id/navigation_browse"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_browse"
+        android:name="com.podium.technicalchallenge.ui.all.BrowseFragment"
+        android:label="@string/title_all"
+        tools:layout="@layout/fragment_browse">
+        <action
+            android:id="@+id/action_top5"
+            app:destination="@id/navigation_top5"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_genre"
+            app:destination="@id/navigation_genre"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_genre"
+        android:name="com.podium.technicalchallenge.ui.genre.GenreFragment"
+        android:label="@string/title_genre"
+        tools:layout="@layout/fragment_genre">
+        <action
+            android:id="@+id/action_top5"
+            app:destination="@id/navigation_top5"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_browse"
+            app:destination="@id/navigation_browse"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 </navigation>
