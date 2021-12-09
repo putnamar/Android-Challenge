@@ -2,24 +2,31 @@ package com.podium.technicalchallenge.ui.dashboard
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.google.android.material.navigation.NavigationBarView
 import com.podium.technicalchallenge.DemoViewModel
+import com.podium.technicalchallenge.R
 import com.podium.technicalchallenge.databinding.FragmentDashboardBinding
 
-class DashboardFragment : Fragment() {
+class DashboardFragment : Fragment(), NavigationBarView.OnItemSelectedListener {
 
     private val viewModel: DemoViewModel by activityViewModels()
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var tvTitle: TextView
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         _binding = FragmentDashboardBinding.inflate(inflater)
+
+        binding.fragment = this
+
         return binding.root
     }
 
@@ -28,11 +35,31 @@ class DashboardFragment : Fragment() {
         _binding = null
     }
 
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.top_5 -> {
+                true
+            }
+            R.id.genre -> {
+                true
+            }
+            R.id.all -> {
+                true
+            }
+            R.id.search -> {
+                onSearchClick()
+                true
+            }
+            else -> false
+        }
+    }
+
+    fun onSearchClick() {
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        tvTitle = binding.tvTitle
-        tvTitle.text = "Podium Challenge"
 
         viewModel.getMovies()
     }

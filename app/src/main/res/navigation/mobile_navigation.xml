@@ -11,4 +11,10 @@
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
+    <fragment
+        android:id="@+id/navigation_top5"
+        android:name="com.podium.technicalchallenge.ui.top5.Top5Fragment"
+        android:label="@string/title_top_5"
+        tools:layout="@layout/fragment_top5" />
+
 </navigation>
