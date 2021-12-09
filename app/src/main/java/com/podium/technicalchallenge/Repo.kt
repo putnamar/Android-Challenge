@@ -20,7 +20,26 @@ class Repo {
             Result.Error(java.lang.Exception())
         }
     }
-
+    suspend fun getMoviesByGenre(genre: String): Result<GenreSearchQuery.Data?> {
+        val response = ApiClient.getInstance().movieClient.query(
+            GenreSearchQuery(
+                genre = Input.optional(genre),
+            )
+        ).await()
+        return if (response.data != null) {
+            Result.Success(response.data)
+        } else {
+            Result.Error(java.lang.Exception())
+        }
+    }
+    suspend fun getGenres(): Result<GetAllGenresQuery.Data?> {
+        val response = ApiClient.getInstance().movieClient.query(GetAllGenresQuery()).await()
+        return if (response.data != null) {
+            Result.Success(response.data)
+        } else {
+            Result.Error(java.lang.Exception())
+        }
+    }
     suspend fun topMovies(): Result<MovieSearchQuery.Data?> {
         val response = ApiClient.getInstance().movieClient.query(
             MovieSearchQuery(

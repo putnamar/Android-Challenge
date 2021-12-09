@@ -14,4 +14,7 @@
         <item name="colorSurface">@color/purple_200</item>
         <item name="colorOnSurfaceVariant">@color/purple_700</item>
     </style>
+    <style name="ShapeAppearanceOverlay.App.Rounded" parent="">
+        <item name="cornerSize">10dp</item>
+    </style>
 </resources>

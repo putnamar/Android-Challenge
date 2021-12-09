@@ -35,7 +35,7 @@ class Top5ViewModel : ViewModel() {
                     }
                 }
                 else -> {
-                    Log.e(TAG, "movies= " + result)
+                    Log.e(TAG, "topMovies= " + result)
                 }
             }
         }

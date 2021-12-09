@@ -11,7 +11,7 @@ import com.podium.technicalchallenge.databinding.FragmentGenreBinding
 import com.podium.technicalchallenge.databinding.FragmentTop5Binding
 
 class GenreFragment : Fragment() {
-    private val viewModel: DemoViewModel by activityViewModels()
+    private val viewModel: GenreViewModel by activityViewModels()
     private var _binding: FragmentGenreBinding? = null
     private val binding get() = _binding!!
 
@@ -22,6 +22,7 @@ class GenreFragment : Fragment() {
     ): View {
         _binding = FragmentGenreBinding.inflate(inflater)
 
+        binding.viewModel = viewModel
         return binding.root
     }
 
