@@ -20,6 +20,7 @@
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/movie_image"
             style="@style/MoviePoster"
+            app:layout_constraintDimensionRatio="0.66667"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:lazy_src="@{movie.posterPath}"

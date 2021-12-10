@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.podium.technicalchallenge.DemoViewModel
 import com.podium.technicalchallenge.databinding.FragmentGenreBinding
-import com.podium.technicalchallenge.databinding.FragmentTop5Binding
 
 class GenreFragment : Fragment() {
     private val viewModel: GenreViewModel by activityViewModels()

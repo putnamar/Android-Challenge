@@ -40,18 +40,20 @@ class GenreViewModel : ViewModel() {
                 }
                 when (result) {
                     is Result.Success<GenreSearchQuery.Data?> -> {
-
-                        withContext(Dispatchers.Main) {
-                            moviesByGenre[genre]?.addAll(result.data?.movies!!)
+                        val movies = result.data?.movies?.filterNotNull()
+                        if (movies != null) {
+                            withContext(Dispatchers.Main) {
+                                moviesByGenre[genre]?.addAll(movies)
+                            }
                         }
                     }
                     else -> {
-                        Log.e(TAG, "genres= " + result)
+                        Log.e(TAG, "genres= $result")
                     }
                 }
             }
         }
-        return moviesByGenre[genre]!!
+        return moviesByGenre[genre] ?: ObservableArrayList()
 
     }
 
@@ -69,13 +71,9 @@ class GenreViewModel : ViewModel() {
                     }
                 }
                 else -> {
-                    Log.e(TAG, "genres= " + result)
+                    Log.e(TAG, "genres= $result")
                 }
             }
         }
-    }
-
-    companion object {
-
     }
 }

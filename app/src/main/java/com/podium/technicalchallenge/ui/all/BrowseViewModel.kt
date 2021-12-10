@@ -1,5 +1,6 @@
 package com.podium.technicalchallenge.ui.all
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
@@ -9,10 +10,11 @@ import androidx.recyclerview.widget.DiffUtil
 import com.podium.technicalchallenge.GetMoviesPageQuery
 import com.podium.technicalchallenge.Repo
 import com.podium.technicalchallenge.Result
+import com.podium.technicalchallenge.util.TAG
 import java.util.*
 
 class BrowseViewModel : ViewModel() {
-    private val PAGE_SIZE = 6
+    private val PAGE_SIZE = 12
 
     val pagedList: Pager<Int, GetMoviesPageQuery.Movie>
     val diff: DiffUtil.ItemCallback<GetMoviesPageQuery.Movie> =
@@ -74,9 +76,10 @@ class BrowseViewModel : ViewModel() {
         }
         return when (result) {
             is Result.Success<GetMoviesPageQuery.Data?> -> {
-                result.data?.movies!! as List<GetMoviesPageQuery.Movie>
+                result.data?.movies?.filterNotNull()
             }
             else -> {
+                Log.e(TAG, "fetchMoviePage= $result")
                 null
             }
         }

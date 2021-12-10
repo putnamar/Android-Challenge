@@ -1,4 +1,4 @@
-package com.podium.technicalchallenge
+package com.podium.technicalchallenge.api
 
 
 import com.apollographql.apollo.ApolloClient

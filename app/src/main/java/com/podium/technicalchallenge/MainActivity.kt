@@ -10,6 +10,9 @@ import com.google.android.material.navigation.NavigationBarView
 import com.podium.technicalchallenge.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
+    // TODO: Make top count dependent on screen size
+    // TODO: Adjust gridlayoutmanagers for screen size
+    // TODO: Make by Genre, By Category
 
     private lateinit var binding: ActivityMainBinding
 
@@ -22,7 +25,7 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
 
         setContentView(binding.root)
 
-        binding.fragment = this
+        binding.activity = this
     }
 
     fun onSearchClick() {

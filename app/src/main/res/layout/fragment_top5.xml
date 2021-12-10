@@ -19,6 +19,6 @@
         app:items="@{viewModel.movies}"
         android:orientation="vertical"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
+        app:spanCount="@integer/top_span"
         tools:listitem="@layout/recycler_top_movie" />
 </layout>

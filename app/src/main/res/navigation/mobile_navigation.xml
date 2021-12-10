@@ -5,14 +5,6 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_top5">
 
-    <!--    <fragment-->
-    <!--        android:id="@+id/navigation_dashboard"-->
-    <!--        android:name="com.podium.technicalchallenge.ui.dashboard.DashboardFragment"-->
-    <!--        android:label="@string/title_dashboard"-->
-    <!--        tools:layout="@layout/fragment_dashboard">-->
-    <!--        -->
-    <!--    </fragment>-->
-
     <fragment
         android:id="@+id/navigation_top5"
         android:name="com.podium.technicalchallenge.ui.top5.Top5Fragment"
@@ -32,7 +24,7 @@
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/fade_out"/>
+            app:popExitAnim="@anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/navigation_browse"
@@ -52,7 +44,7 @@
             app:enterAnim="@anim/fade_in"
             app:exitAnim="@anim/fade_out"
             app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/fade_out"/>
+            app:popExitAnim="@anim/fade_out" />
 
     </fragment>
     <fragment

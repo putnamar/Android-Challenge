@@ -2,7 +2,7 @@
     <string name="app_name">Moviefone by Kramer</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_top_5">Top</string>
-    <string name="title_genre">By Genre</string>
+    <string name="title_genre">Category</string>
     <string name="title_all">All</string>
     <string name="title_search">Search</string>
     <string name="runtime_text">%dh%dm</string>

@@ -2,7 +2,6 @@ package com.podium.technicalchallenge.ui.top5
 
 import android.util.Log
 import androidx.databinding.ObservableArrayList
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.podium.technicalchallenge.*
@@ -23,19 +22,21 @@ class Top5ViewModel : ViewModel() {
     private fun fetchMovies() {
         viewModelScope.launch(Dispatchers.IO) {
             val result = try {
-                // TODO: Make it dependent on screen size to ensure it fills up the screen
                 Repo.getInstance().topMovies(6)
             } catch (e: Exception) {
                 Result.Error(e)
             }
             when (result) {
                 is Result.Success<MovieSearchQuery.Data?> -> {
-                    withContext(Dispatchers.Main) {
-                        movies.addAll(result.data?.movies!!)
+                    val resultMovies = result.data?.movies?.filterNotNull()
+                    if (resultMovies != null) {
+                        withContext(Dispatchers.Main) {
+                            movies.addAll(resultMovies)
+                        }
                     }
                 }
                 else -> {
-                    Log.e(TAG, "topMovies= " + result)
+                    Log.e(TAG, "topMovies= $result")
                 }
             }
         }
