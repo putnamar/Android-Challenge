@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <variable
-            name="activity"
-            type="com.podium.technicalchallenge.MainActivity" />
+            name="viewModel"
+            type="com.podium.technicalchallenge.ui.main.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,16 +19,16 @@
             android:id="@+id/nav_host"
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/navigationView"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/navigationViewTablet"
+            app:layout_constraintTop_toBottomOf="@id/expandable_search_layout"
             app:navGraph="@navigation/mobile_navigation" />
 
         <com.google.android.material.navigationrail.NavigationRailView
-            android:id="@+id/navigationView"
+            android:id="@+id/navigationViewTablet"
             style="@style/Widget.MaterialComponents.NavigationRailView.Colored.Compact"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
@@ -37,7 +38,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/navigation_rail_menu"
-            app:onItemSelectedListener="@{activity}" />
+            app:onItemSelectedListener="@{item -> viewModel.onItemSelected(navigationViewTablet, navHost, item)}" />
 
+        <net.cachapa.expandablelayout.ExpandableLayout
+            android:id="@+id/expandable_search_layout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:expanded="@{viewModel.expanded}"
+            app:layout_constraintBottom_toTopOf="@id/nav_host"
+            app:layout_constraintLeft_toRightOf="@id/navigationViewTablet"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:el_expanded="true">
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_view"
+                app:onQueryTextListener="@{viewModel.searchQueryListener}"
+                style="@style/SearchViewTheme" />
+        </net.cachapa.expandablelayout.ExpandableLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.podium.technicalchallenge.ui.main.MainViewModel" />
     </data>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -11,6 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/title_search"
+        android:onClick="@{v -> viewModel.onSearchClick()}"
         app:srcCompat="@drawable/ic_search" />
 
 </layout>

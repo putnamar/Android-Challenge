@@ -20,5 +20,6 @@
         android:enabled="true"
         android:visible="@bool/is_phone"
         android:icon="@drawable/ic_search"
+        android:checked="false"
         android:title="@string/title_search"/>
 </menu>
