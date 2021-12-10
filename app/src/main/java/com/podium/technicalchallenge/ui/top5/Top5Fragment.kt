@@ -23,16 +23,6 @@ class Top5Fragment : Fragment() {
     ): View {
         _binding = FragmentTop5Binding.inflate(inflater)
 
-        binding.top5Recycler.addItemDecoration(
-            DividerItemDecoration(
-                requireActivity(),
-                LinearLayout.VERTICAL
-            )
-        )
-
-        val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(binding.top5Recycler)
-
         binding.viewModel = viewModel
         return binding.root
     }

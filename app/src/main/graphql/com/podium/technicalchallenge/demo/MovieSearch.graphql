@@ -8,6 +8,10 @@ query MovieSearch($limit: Int, $orderBy: String, $sort: Sort) {
     id
     title
     voteAverage
-
+    posterPath
+    popularity
+    voteCount
+    releaseDate
+    runtime
   }
 }

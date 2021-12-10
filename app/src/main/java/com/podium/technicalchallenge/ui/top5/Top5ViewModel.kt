@@ -14,7 +14,6 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
 
 class Top5ViewModel : ViewModel() {
 
-
     init {
         fetchMovies()
     }
@@ -24,7 +23,8 @@ class Top5ViewModel : ViewModel() {
     private fun fetchMovies() {
         viewModelScope.launch(Dispatchers.IO) {
             val result = try {
-                Repo.getInstance().topMovies()
+                // TODO: Make it dependent on screen size to ensure it fills up the screen
+                Repo.getInstance().topMovies(6)
             } catch (e: Exception) {
                 Result.Error(e)
             }

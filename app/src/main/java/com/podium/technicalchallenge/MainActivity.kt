@@ -5,6 +5,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.Navigation
 import com.google.android.material.navigation.NavigationBarView
 import com.podium.technicalchallenge.databinding.ActivityMainBinding
@@ -34,15 +35,15 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.top_5 -> {
-                Navigation.findNavController(binding.navHost).navigate(R.id.navigation_top5)
+                Navigation.findNavController(binding.navHost).navigate(R.id.action_top5)
                 true
             }
             R.id.genre -> {
-                Navigation.findNavController(binding.navHost).navigate(R.id.navigation_genre)
+                Navigation.findNavController(binding.navHost).navigate(R.id.action_genre)
                 true
             }
             R.id.all -> {
-                Navigation.findNavController(binding.navHost).navigate(R.id.navigation_browse)
+                Navigation.findNavController(binding.navHost).navigate(R.id.action_browse)
                 true
             }
             R.id.search -> {

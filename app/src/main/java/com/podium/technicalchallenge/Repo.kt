@@ -40,10 +40,10 @@ class Repo {
             Result.Error(java.lang.Exception())
         }
     }
-    suspend fun topMovies(): Result<MovieSearchQuery.Data?> {
+    suspend fun topMovies(count: Int = 5): Result<MovieSearchQuery.Data?> {
         val response = ApiClient.getInstance().movieClient.query(
             MovieSearchQuery(
-                limit = Input.optional(5),
+                limit = Input.optional(count),
                 orderBy = Input.optional("voteAverage"),
                 sort = Input.optional(Sort.DESC)
             )

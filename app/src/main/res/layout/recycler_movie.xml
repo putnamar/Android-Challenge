@@ -19,33 +19,20 @@
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/movie_image"
-            android:layout_width="107dp"
-            android:layout_height="160dp"
-            android:scaleType="fitCenter"
-            android:adjustViewBounds="true"
-            app:lazy_src="@{movie.posterPath}"
-            app:title="@{movie.title}"
-
-            tools:text="asdfad"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Rounded"
-            tools:src="@mipmap/john_wick"
+            style="@style/MoviePoster"
+            app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            app:lazy_src="@{movie.posterPath}"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Rounded"
+            app:title="@{movie.title}"
+            tools:src="@mipmap/john_wick" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/title_text_view"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            android:autoSizeTextType="uniform"
-            android:autoSizeMaxTextSize="16sp"
-            android:autoSizeMinTextSize="12sp"
+            style="@style/MovieTitle"
             android:text="@{movie.title}"
-            app:layout_constraintStart_toStartOf="@id/movie_image"
             app:layout_constraintEnd_toEndOf="@id/movie_image"
+            app:layout_constraintStart_toStartOf="@id/movie_image"
             app:layout_constraintTop_toBottomOf="@id/movie_image"
             tools:text="John Wick 3 The King Danger cloasdfasdfasfdasfasser" />
     </androidx.constraintlayout.widget.ConstraintLayout>

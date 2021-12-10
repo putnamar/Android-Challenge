@@ -18,6 +18,7 @@
         app:itemBinding="@{viewModel.top5Binding}"
         app:items="@{viewModel.movies}"
         android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
         tools:listitem="@layout/recycler_top_movie" />
 </layout>
