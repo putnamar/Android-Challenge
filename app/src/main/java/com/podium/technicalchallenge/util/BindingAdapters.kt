@@ -3,11 +3,14 @@ package com.podium.technicalchallenge.util
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Color
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.amulyakhare.textdrawable.TextDrawable
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.podium.technicalchallenge.R
+import com.podium.technicalchallenge.databinding.ViewMoviePosterBinding
 import com.squareup.picasso.Picasso
 
 object BindingAdapters {
@@ -25,6 +28,57 @@ object BindingAdapters {
             colors.recycle()
         }
         return returnColor
+    }
+
+    @BindingAdapter(value = ["double_click"])
+    @JvmStatic
+    fun setDoubleTap(view: View, posterPath: String?) {
+        posterPath?.also { path ->
+            val gestureDetector =
+                GestureDetector(null, object : GestureDetector.SimpleOnGestureListener() {
+                    override fun onDoubleTap(e: MotionEvent?): Boolean {
+                        val binding = ViewMoviePosterBinding.inflate(view.context.layoutInflater)
+
+                        val dialog = MaterialAlertDialogBuilder(view.context, R.style.MaterialAlertDialog_App)
+                            .setView(binding.root)
+                            .show()
+                        dialog.window?.also { win ->
+                            win.attributes?.also { lp ->
+                                lp.dimAmount = 0.8f
+                                win.attributes = lp
+
+                            }
+                            win.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
+                        }
+
+                        binding.posterPath = path
+                        binding.movieImage.setOnClickListener {
+                            dialog.dismiss()
+                        }
+                        return super.onDoubleTap(e)
+                    }
+                });
+
+            view.setOnTouchListener { v, event ->
+                gestureDetector.onTouchEvent(event)
+                v.onTouchEvent(event)
+            }
+            view.setOnClickListener { v ->
+//                val binding = ViewMoviePosterBinding.inflate(view.context.layoutInflater)
+//                binding.posterPath = path
+//                val dialog = MaterialAlertDialogBuilder(view.context, R.style.MaterialAlertDialog_App)
+//                    .setView(binding.root)
+//                    .show()
+//                dialog.window?.also { win ->
+//                    win.attributes?.also { lp ->
+//                        lp.dimAmount = 0.8f
+//                        win.attributes = lp
+//                    }
+//                    win.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
+//                }
+
+            }
+        }
     }
 
     @BindingAdapter(value = ["runtime"])

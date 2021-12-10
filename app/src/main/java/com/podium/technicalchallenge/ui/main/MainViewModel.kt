@@ -52,12 +52,16 @@ class MainViewModel : ObservableViewModel() {
 
                     navController.navigate(R.id.action_top5)
                 }
+                expanded = false
+                searchRepo.searchTerms = null
                 true
             }
             R.id.genre -> {
                 if (navController.currentDestination?.id != R.id.navigation_genre) {
                     navController.navigate(R.id.action_genre)
                 }
+                expanded = false
+                searchRepo.searchTerms = null
                 true
             }
             R.id.all -> {
