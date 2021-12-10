@@ -20,6 +20,21 @@ class Repo {
             Result.Error(java.lang.Exception())
         }
     }
+
+    suspend fun getMoviePage(offset: Int, size: Int): Result<GetMoviesPageQuery.Data?> {
+        val response = ApiClient.getInstance().movieClient.query(
+            GetMoviesPageQuery(
+                offset = Input.optional(offset),
+                limit = Input.optional(size)
+            )
+        ).await()
+        return if (response.data != null) {
+            Result.Success(response.data)
+        } else {
+            Result.Error(java.lang.Exception())
+        }
+    }
+
     suspend fun getMoviesByGenre(genre: String): Result<GenreSearchQuery.Data?> {
         val response = ApiClient.getInstance().movieClient.query(
             GenreSearchQuery(

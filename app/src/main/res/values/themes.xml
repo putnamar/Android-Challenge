@@ -1,5 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Widget.App.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.BottomNavigationView</item>
+    </style>
 
+    <style name="ThemeOverlay.App.BottomNavigationView" parent="">
+        <item name="colorSurface">@color/purple_200</item>
+        <item name="colorOnSurfaceVariant">@color/purple_700</item>
+    </style>
 
     <style name="Theme.PodiumTechinalChallenge" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>

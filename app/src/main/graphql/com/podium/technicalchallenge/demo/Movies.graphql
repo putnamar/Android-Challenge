@@ -1,0 +1,38 @@
+query GetMoviesQuery {
+  movies {
+    title
+  }
+}
+
+query GetMoviesPage($limit: Int = 5, $offset: Int = 0, $orderBy: String = "voteAverage", $sort: Sort = DESC) {
+  movies (
+    limit: $limit,
+    offset: $offset,
+    orderBy: $orderBy,
+    sort: $sort,
+
+  ) {
+    id
+    title
+    voteAverage
+    posterPath
+  }
+}
+
+query MovieSearch($limit: Int, $orderBy: String, $sort: Sort = DESC) {
+  movies (
+    limit: $limit,
+    orderBy: $orderBy,
+    sort: $sort
+  ) {
+    __typename
+    id
+    title
+    voteAverage
+    posterPath
+    popularity
+    voteCount
+    releaseDate
+    runtime
+  }
+}

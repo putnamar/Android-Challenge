@@ -13,23 +13,15 @@ import com.podium.technicalchallenge.databinding.FragmentTop5Binding
 
 class Top5Fragment : Fragment() {
     private val viewModel: Top5ViewModel by activityViewModels()
-    private var _binding: FragmentTop5Binding? = null
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentTop5Binding.inflate(inflater)
-
-        binding.viewModel = viewModel
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        return FragmentTop5Binding.inflate(inflater).also {
+            it.viewModel = viewModel
+        }.root
     }
 
     companion object {

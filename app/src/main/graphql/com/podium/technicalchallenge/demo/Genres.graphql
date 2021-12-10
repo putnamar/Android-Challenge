@@ -8,7 +8,6 @@ query GenreSearch($genre: String, $limit: Int = 5, $orderBy: String = "voteAvera
     limit: $limit,
     orderBy: $orderBy,
     sort: $sort,
-
   ) {
     __typename
     id

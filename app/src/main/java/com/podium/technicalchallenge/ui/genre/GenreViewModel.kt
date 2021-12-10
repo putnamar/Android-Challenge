@@ -1,15 +1,12 @@
 package com.podium.technicalchallenge.ui.genre
 
 import android.util.Log
-import android.widget.ImageView
-import androidx.databinding.BindingAdapter
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableArrayMap
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.podium.technicalchallenge.*
 import com.podium.technicalchallenge.util.TAG
-import com.squareup.picasso.Picasso
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -18,12 +15,16 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding
 class GenreViewModel : ViewModel() {
     val genres = ObservableArrayList<String>()
     val genreBinding: ItemBinding<String>
-    val genreMovieBinding: ItemBinding<GenreSearchQuery.Movie> = ItemBinding.of(BR.movie, R.layout.recycler_movie)
-    private val moviesByGenre: ObservableArrayMap<String, ObservableArrayList<GenreSearchQuery.Movie>> = ObservableArrayMap()
+    val genreMovieBinding: ItemBinding<GenreSearchQuery.Movie> =
+        ItemBinding.of(BR.movie, R.layout.recycler_movie)
+    private val moviesByGenre: ObservableArrayMap<String, ObservableArrayList<GenreSearchQuery.Movie>> =
+        ObservableArrayMap()
 
     init {
         fetchGenres()
-        genreBinding = ItemBinding.of<String>(BR.genre, R.layout.recycler_genre).bindExtra(BR.viewModel, this)
+        genreBinding =
+            ItemBinding.of<String>(BR.genre, R.layout.recycler_genre).bindExtra(BR.viewModel, this)
+
     }
 
 
@@ -39,6 +40,7 @@ class GenreViewModel : ViewModel() {
                 }
                 when (result) {
                     is Result.Success<GenreSearchQuery.Data?> -> {
+
                         withContext(Dispatchers.Main) {
                             moviesByGenre[genre]?.addAll(result.data?.movies!!)
                         }
@@ -63,7 +65,7 @@ class GenreViewModel : ViewModel() {
             when (result) {
                 is Result.Success<GetAllGenresQuery.Data?> -> {
                     withContext(Dispatchers.Main) {
-                        genres.addAll(result.data?.genres!!)
+                        genres.addAll(result.data?.genres!!.sorted())
                     }
                 }
                 else -> {
@@ -72,6 +74,7 @@ class GenreViewModel : ViewModel() {
             }
         }
     }
+
     companion object {
 
     }

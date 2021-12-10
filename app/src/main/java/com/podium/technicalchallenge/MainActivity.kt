@@ -5,12 +5,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.Navigation
 import com.google.android.material.navigation.NavigationBarView
 import com.podium.technicalchallenge.databinding.ActivityMainBinding
-import com.podium.technicalchallenge.ui.dashboard.DashboardFragment
-import com.podium.technicalchallenge.util.TAG
 
 class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListener {
 
@@ -33,17 +30,25 @@ class MainActivity : AppCompatActivity(), NavigationBarView.OnItemSelectedListen
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        val navController = Navigation.findNavController(binding.navHost)
         return when (item.itemId) {
             R.id.top_5 -> {
-                Navigation.findNavController(binding.navHost).navigate(R.id.action_top5)
+                if (navController.currentDestination?.id != R.id.navigation_top5) {
+                    navController.navigate(R.id.action_top5)
+                }
                 true
             }
             R.id.genre -> {
-                Navigation.findNavController(binding.navHost).navigate(R.id.action_genre)
+                if (navController.currentDestination?.id != R.id.navigation_genre) {
+                    navController.navigate(R.id.action_genre)
+                }
                 true
             }
             R.id.all -> {
-                Navigation.findNavController(binding.navHost).navigate(R.id.action_browse)
+                if (navController.currentDestination?.id != R.id.navigation_browse) {
+                    navController.navigate(R.id.action_browse)
+                }
+
                 true
             }
             R.id.search -> {

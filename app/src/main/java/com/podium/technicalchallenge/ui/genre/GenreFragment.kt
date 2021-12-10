@@ -12,23 +12,15 @@ import com.podium.technicalchallenge.databinding.FragmentTop5Binding
 
 class GenreFragment : Fragment() {
     private val viewModel: GenreViewModel by activityViewModels()
-    private var _binding: FragmentGenreBinding? = null
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentGenreBinding.inflate(inflater)
-
-        binding.viewModel = viewModel
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        return FragmentGenreBinding.inflate(inflater).also {
+            it.viewModel = viewModel
+        }.root
     }
 
     companion object {
