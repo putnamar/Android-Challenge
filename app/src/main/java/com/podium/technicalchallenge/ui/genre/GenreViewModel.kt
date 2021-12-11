@@ -1,17 +1,14 @@
 package com.podium.technicalchallenge.ui.genre
 
 import android.util.Log
-import android.view.MenuItem
-import android.view.View
-import android.widget.PopupMenu
-import androidx.databinding.Bindable
 import androidx.databinding.ObservableArrayList
 import androidx.databinding.ObservableArrayMap
 import androidx.databinding.ObservableList
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.DiffUtil
 import com.podium.technicalchallenge.*
-import com.podium.technicalchallenge.util.ObservableViewModel
+import com.podium.technicalchallenge.api.Repo
+import com.podium.technicalchallenge.api.Result
 import com.podium.technicalchallenge.util.SortableObservableViewModel
 import com.podium.technicalchallenge.util.TAG
 import kotlinx.coroutines.Dispatchers
@@ -29,13 +26,6 @@ class GenreViewModel : SortableObservableViewModel() {
     private val moviesByGenre: ObservableArrayMap<String, DiffObservableList<GenreSearchQuery.Movie>> =
         ObservableArrayMap()
 
-    init {
-        fetchGenres()
-        genreBinding =
-            ItemBinding.of<String>(BR.genre, R.layout.recycler_genre).bindExtra(BR.viewModel, this)
-    }
-
-
     private val diff: DiffUtil.ItemCallback<GenreSearchQuery.Movie> =
         object : DiffUtil.ItemCallback<GenreSearchQuery.Movie>() {
             override fun areItemsTheSame(
@@ -52,13 +42,27 @@ class GenreViewModel : SortableObservableViewModel() {
                 return Objects.equals(oldItem, newItem)
             }
         }
+
+    init {
+        fetchGenres()
+        genreBinding =
+            ItemBinding.of<String>(BR.genre, R.layout.recycler_genre).bindExtra(BR.viewModel, this)
+    }
+
     override fun invalidateOrder() {
         genres.parallelStream().forEach {
             getMoviesByGenre(genre = it, forceReload = true)
         }
     }
 
-    fun getMoviesByGenre(genre: String, forceReload: Boolean = false): ObservableList<GenreSearchQuery.Movie> {
+    override fun searchTermsChanged() {
+
+    }
+
+    fun getMoviesByGenre(
+        genre: String,
+        forceReload: Boolean = false
+    ): ObservableList<GenreSearchQuery.Movie> {
         val list = moviesByGenre[genre] ?: DiffObservableList(diff, true)
 
         if (!moviesByGenre.containsKey(genre) || forceReload) {

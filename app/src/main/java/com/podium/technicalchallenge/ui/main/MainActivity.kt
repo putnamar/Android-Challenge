@@ -1,6 +1,7 @@
 package com.podium.technicalchallenge.ui.main
 
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.databinding.DataBindingUtil
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     // TODO: Make top count dependent on screen size
     // TODO: Common movie class
     // TODO: Database?
+    // TODO: Save User Settings
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: MainViewModel
@@ -52,6 +54,11 @@ class MainActivity : AppCompatActivity() {
 
         binding.navigationViewTablet?.headerView?.also { headerView ->
             DataBindingUtil.bind<NavigationRailFabBinding>(headerView)?.viewModel = viewModel
+        }
+
+        var closeButton = binding.searchView.findViewById<View>(R.id.search_close_btn)
+        closeButton.setOnClickListener {
+            viewModel.expanded = false
         }
     }
 

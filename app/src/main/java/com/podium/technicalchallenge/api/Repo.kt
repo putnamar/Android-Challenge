@@ -1,8 +1,8 @@
-package com.podium.technicalchallenge
+package com.podium.technicalchallenge.api
 
 import com.apollographql.apollo.api.Input
 import com.apollographql.apollo.coroutines.await
-import com.podium.technicalchallenge.api.ApiClient
+import com.podium.technicalchallenge.*
 import com.podium.technicalchallenge.type.Sort
 
 
@@ -24,13 +24,28 @@ class Repo {
         }
     }
 
-    suspend fun getMoviePage(offset: Int, size: Int, sortBy: String, ascending: Boolean): Result<GetMoviesPageQuery.Data?> {
+    suspend fun getMoviePage(
+        offset: Int,
+        size: Int,
+        sortBy: String,
+        ascending: Boolean,
+        searchTerms: List<String>?
+    ): Result<GetMoviesPageQuery.Data?> {
+        val search = if (searchTerms.isNullOrEmpty()) Input.absent() else Input.optional(
+            searchTerms.joinToString(
+                separator = "|",
+                prefix = "(",
+                postfix = ")"
+            )
+        )
+
         val response = ApiClient.getInstance().movieClient.query(
             GetMoviesPageQuery(
                 offset = Input.optional(offset),
                 limit = Input.optional(size),
                 orderBy = Input.optional(sortBy),
-                sort = Input.optional(if (ascending) Sort.ASC else Sort.DESC)
+                sort = Input.optional(if (ascending) Sort.ASC else Sort.DESC),
+                search = search
             )
         ).await()
         return if (response.data != null) {
@@ -40,7 +55,11 @@ class Repo {
         }
     }
 
-    suspend fun getMoviesByGenre(genre: String, sortBy: String, ascending: Boolean): Result<GenreSearchQuery.Data?> {
+    suspend fun getMoviesByGenre(
+        genre: String,
+        sortBy: String,
+        ascending: Boolean
+    ): Result<GenreSearchQuery.Data?> {
         val response = ApiClient.getInstance().movieClient.query(
             GenreSearchQuery(
                 genre = Input.optional(genre),

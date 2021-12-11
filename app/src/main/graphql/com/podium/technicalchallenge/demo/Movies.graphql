@@ -28,13 +28,13 @@ query GetMovie($id:Int!) {
   }
 }
 
-query GetMoviesPage($limit: Int = 5, $offset: Int = 0, $orderBy: String = "voteAverage", $sort: Sort = DESC) {
+query GetMoviesPage($limit: Int = 5, $offset: Int = 0, $orderBy: String = "voteAverage", $sort: Sort = DESC, $search: String) {
   movies (
     limit: $limit,
     offset: $offset,
     orderBy: $orderBy,
     sort: $sort,
-
+    search: $search
   ) {
     id
     title

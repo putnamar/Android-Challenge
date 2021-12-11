@@ -1,11 +1,14 @@
 package com.podium.technicalchallenge.ui.all
 
 import android.util.Log
-import androidx.paging.*
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import androidx.recyclerview.widget.DiffUtil
 import com.podium.technicalchallenge.GetMoviesPageQuery
-import com.podium.technicalchallenge.Repo
-import com.podium.technicalchallenge.Result
+import com.podium.technicalchallenge.api.Repo
+import com.podium.technicalchallenge.api.Result
 import com.podium.technicalchallenge.util.SortableObservableViewModel
 import com.podium.technicalchallenge.util.TAG
 import java.util.*
@@ -14,9 +17,7 @@ class BrowseViewModel : SortableObservableViewModel() {
     private val PAGE_SIZE = 12
     private var pagingDataCallback: LoadPagingData? = null
 
-    val pagedList: Pager<Int, GetMoviesPageQuery.Movie>
-
-    val diff: DiffUtil.ItemCallback<GetMoviesPageQuery.Movie> =
+    private val diff: DiffUtil.ItemCallback<GetMoviesPageQuery.Movie> =
         object : DiffUtil.ItemCallback<GetMoviesPageQuery.Movie>() {
             override fun areItemsTheSame(
                 oldItem: GetMoviesPageQuery.Movie,
@@ -33,6 +34,7 @@ class BrowseViewModel : SortableObservableViewModel() {
             }
         }
 
+    val pagedList: Pager<Int, GetMoviesPageQuery.Movie>
     val pagingAdapter = MovieAdapter(diff)
 
     init {
@@ -66,6 +68,10 @@ class BrowseViewModel : SortableObservableViewModel() {
         }
     }
 
+    override fun searchTermsChanged() {
+        invalidateOrder()
+    }
+
     fun setPagingDataCallback(callback: LoadPagingData) {
         pagingDataCallback = callback
     }
@@ -78,8 +84,9 @@ class BrowseViewModel : SortableObservableViewModel() {
         start: Int,
         size: Int
     ): List<GetMoviesPageQuery.Movie>? {
+        val searchTerms: List<String>? = searchRepo.searchTerms?.split(" ")
         val result = try {
-            Repo.getInstance().getMoviePage(start, size, sortColumn, sortOrder)
+            Repo.getInstance().getMoviePage(start, size, sortColumn, sortOrder, searchTerms)
         } catch (e: Exception) {
             Result.Error(e)
         }

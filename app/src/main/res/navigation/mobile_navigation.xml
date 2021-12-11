@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_top5"
-        android:name="com.podium.technicalchallenge.ui.top5.Top5Fragment"
+        android:name="com.podium.technicalchallenge.ui.top.TopFragment"
         android:label="@string/title_top_5"
-        tools:layout="@layout/fragment_top5">
+        tools:layout="@layout/fragment_top_movies">
 
         <action
             android:id="@+id/action_genre"

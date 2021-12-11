@@ -5,8 +5,8 @@ import androidx.databinding.Bindable
 import androidx.lifecycle.viewModelScope
 import com.podium.technicalchallenge.BR
 import com.podium.technicalchallenge.GetMovieQuery
-import com.podium.technicalchallenge.Repo
-import com.podium.technicalchallenge.Result
+import com.podium.technicalchallenge.api.Repo
+import com.podium.technicalchallenge.api.Result
 import com.podium.technicalchallenge.util.ObservableViewModel
 import com.podium.technicalchallenge.util.TAG
 import kotlinx.coroutines.Dispatchers

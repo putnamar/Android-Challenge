@@ -1,17 +1,21 @@
-package com.podium.technicalchallenge.ui.top5
+package com.podium.technicalchallenge.ui.top
 
 import android.util.Log
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.podium.technicalchallenge.*
+import com.podium.technicalchallenge.BR
+import com.podium.technicalchallenge.MovieSearchQuery
+import com.podium.technicalchallenge.R
+import com.podium.technicalchallenge.api.Repo
+import com.podium.technicalchallenge.api.Result
 import com.podium.technicalchallenge.util.TAG
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.tatarka.bindingcollectionadapter2.ItemBinding
 
-class Top5ViewModel : ViewModel() {
+class TopViewModel : ViewModel() {
 
     init {
         fetchMovies()

@@ -4,11 +4,13 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
 import androidx.databinding.Bindable
+import androidx.databinding.Observable
 import com.podium.technicalchallenge.BR
 import com.podium.technicalchallenge.R
+import com.podium.technicalchallenge.search.SearchRepo
 
 abstract class SortableObservableViewModel : ObservableViewModel() {
-    protected abstract fun invalidateOrder()
+    protected val searchRepo = SearchRepo.getInstance()
     protected val SORT_ASC = "ASC"
     protected val SORT_DESC = "DESC"
     protected val DISP_VOTE_AVERAGE = "Vote Average"
@@ -19,15 +21,31 @@ abstract class SortableObservableViewModel : ObservableViewModel() {
     protected val COLUMN_POPULARITY = DISP_POPULARITY.lowercase()
     protected val DISP_BUDGET = "Budget"
     protected val COLUMN_BUDGET = DISP_BUDGET.lowercase()
+    protected var sortColumn = "voteAverage"
+    protected var sortOrder = false
 
-    @Bindable
-    var displayColumn: String = DISP_VOTE_AVERAGE
-        set(value) {
-            if (field != value) {
-                field = value
-                notifyPropertyChanged(BR.displayColumn)
+    private val propertyChanged: Observable.OnPropertyChangedCallback =
+        object : Observable.OnPropertyChangedCallback() {
+            override fun onPropertyChanged(sender: Observable?, propertyId: Int) {
+                when (propertyId) {
+                    BR.searchTerms -> {
+                        searchTermsChanged()
+                    }
+                }
             }
         }
+
+    init {
+        searchRepo.addOnPropertyChangedCallback(propertyChanged)
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        searchRepo.removeOnPropertyChangedCallback(propertyChanged)
+    }
+
+    protected abstract fun invalidateOrder()
+    protected abstract fun searchTermsChanged()
 
     @Bindable
     var displayOrder: String = SORT_DESC
@@ -37,8 +55,16 @@ abstract class SortableObservableViewModel : ObservableViewModel() {
                 notifyPropertyChanged(BR.displayOrder)
             }
         }
-    protected var sortColumn = "voteAverage"
-    protected var sortOrder = false
+
+
+    @Bindable
+    var displayColumn: String = DISP_VOTE_AVERAGE
+        set(value) {
+            if (field != value) {
+                field = value
+                notifyPropertyChanged(BR.displayColumn)
+            }
+        }
 
     fun onCategoryClick(v: View) {
         val popup = PopupMenu(v.context, v)

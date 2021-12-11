@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.top5.Top5Fragment">
+    tools:context=".ui.top.TopFragment">
 
     <data>
 
         <variable
             name="viewModel"
-            type="com.podium.technicalchallenge.ui.top5.Top5ViewModel" />
+            type="com.podium.technicalchallenge.ui.top.TopViewModel" />
     </data>
 
     <androidx.recyclerview.widget.RecyclerView
