@@ -38,10 +38,13 @@ class Repo {
         }
     }
 
-    suspend fun getMoviesByGenre(genre: String): Result<GenreSearchQuery.Data?> {
+    suspend fun getMoviesByGenre(genre: String, sortBy: String, ascending: Boolean): Result<GenreSearchQuery.Data?> {
         val response = ApiClient.getInstance().movieClient.query(
             GenreSearchQuery(
                 genre = Input.optional(genre),
+                orderBy = Input.optional(sortBy),
+                limit = Input.optional(100),
+                sort = Input.optional(if (ascending) Sort.ASC else Sort.DESC)
             )
         ).await()
         return if (response.data != null) {

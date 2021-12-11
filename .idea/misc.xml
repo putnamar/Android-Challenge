@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/drawable/ic_genre.xml" value="0.36244725738396627" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.4473958333333333" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/drawable/ic_star_rating.xml" value="0.44375" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/drawable/ic_star_scaled.xml" value="0.44375" />
@@ -25,6 +26,8 @@
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/layout/view_movie_poster.xml" value="0.39166666666666666" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/menu/bottom_nav_menu.xml" value="0.43125" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/menu/navigation_rail_menu.xml" value="0.43125" />
+        <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/menu/popup_category.xml" value="0.3493670886075949" />
+        <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/menu/popup_sort.xml" value="0.36367521367521366" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.4473958333333333" />
       </map>
     </option>
