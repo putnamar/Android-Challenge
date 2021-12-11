@@ -41,6 +41,7 @@
             android:layout_height="wrap_content"
             android:autoSizeMaxTextSize="20sp"
             android:autoSizeMinTextSize="14sp"
+            android:layout_marginHorizontal="4dp"
             android:gravity="center"
             android:text="@{viewModel.title}"
             android:textAppearance="?android:attr/textAppearanceLarge"
