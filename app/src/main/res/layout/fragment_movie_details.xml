@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="java.util.Objects" />
+
+        <variable
+            name="viewModel"
+            type="com.podium.technicalchallenge.ui.details.DetailsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Dialog">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/movie_image"
+            style="@style/MoviePoster"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.5"
+            app:lazy_src="@{viewModel.posterPath}"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.Rounded"
+            app:title="@{viewModel.title}"
+            tools:src="@mipmap/john_wick" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/title_text_view"
+            style="@style/MovieTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:autoSizeMaxTextSize="20sp"
+            android:autoSizeMinTextSize="14sp"
+            android:gravity="center"
+            android:text="@{viewModel.title}"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            app:layout_constraintLeft_toRightOf="@id/movie_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Joker\nadsf" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/original_title_text_view"
+            style="@style/DetailsRow"
+            android:text="@{viewModel.originalTitle}"
+            android:textStyle="italic"
+            android:visibility="@{!Objects.equals(viewModel.title, viewModel.originalTitle) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toRightOf="@id/movie_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_text_view"
+            tools:text="Joker 2" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/director_tv"
+            style="@style/DetailsRow"
+            android:text="@{String.format(`Director: %s`, viewModel.director.name)}"
+            android:visibility="@{viewModel.director != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toRightOf="@id/movie_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/original_title_text_view"
+            tools:text="Director: James Cameron" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/vote_text_view"
+            style="@style/DetailsRow"
+            android:layout_marginHorizontal="0dp"
+            android:layout_marginLeft="4dp"
+            android:drawableStart="@drawable/ic_star_scaled"
+            android:drawablePadding="3dp"
+            android:gravity="left|center_vertical"
+            android:maxLines="1"
+            android:paddingHorizontal="0dp"
+            android:text="@{String.format(`%.01f - %d Votes`, viewModel.voteAverage, viewModel.voteCount)}"
+            app:layout_constraintLeft_toRightOf="@id/movie_image"
+            app:layout_constraintRight_toLeftOf="@id/runtime_text_view"
+            app:layout_constraintTop_toBottomOf="@id/director_tv"
+            tools:text="6.66 - 4455 Votes" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/runtime_text_view"
+            style="@style/DetailsRow"
+            android:layout_width="wrap_content"
+            android:layout_marginHorizontal="0dp"
+            android:gravity="right|center_vertical"
+            android:maxLines="1"
+            android:paddingHorizontal="0dp"
+            app:layout_constraintLeft_toRightOf="@id/vote_text_view"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/director_tv"
+            app:runtime="@{viewModel.runtime}"
+            tools:text="3h40m" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="8dp"
+            android:background="#bcbcbc"
+            app:layout_constraintLeft_toRightOf="@id/movie_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/runtime_text_view" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/language_tv"
+            style="@style/DetailsRow"
+            android:gravity="left"
+            android:text="@{String.format(`Language: %s`, viewModel.originalLanguage)}"
+            android:visibility="@{viewModel.originalLanguage != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toRightOf="@id/movie_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider"
+            tools:text="Language: English" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/budget_tv"
+            style="@style/DetailsRow"
+            android:gravity="left"
+            app:budget="@{viewModel.budget}"
+            app:layout_constraintLeft_toRightOf="@id/movie_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/language_tv"
+            tools:text="Budget: $4.2 million"
+            tools:visibility="gone" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/release_date_tv"
+            style="@style/DetailsRow"
+            android:gravity="left"
+            android:maxLines="1"
+            android:text="@{String.format(`Release Date: %s`, viewModel.releaseDate)}"
+            android:visibility="@{viewModel.releaseDate != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toRightOf="@id/movie_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/budget_tv"
+            tools:text="Release Date: Jan 2, 2021" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/popularity"
+            style="@style/DetailsRow"
+            android:gravity="left"
+            android:maxLines="1"
+            android:text="@{String.format(`Popularity: %.0f`, viewModel.popularity)}"
+            android:visibility="@{viewModel.popularity != null ? View.VISIBLE : View.GONE}"
+            app:layout_constraintLeft_toRightOf="@id/movie_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/release_date_tv"
+            tools:text="Popularity: 20%" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/genres"
+            style="@style/DetailsRow"
+            android:gravity="left"
+            android:maxLines="4"
+            android:textStyle="italic"
+            app:genres="@{viewModel.genres}"
+            app:layout_constraintLeft_toRightOf="@id/movie_image"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/popularity"
+            tools:text="Thriller, Action" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/overview_tv"
+            style="@style/DetailsRow"
+            android:gravity="left"
+            android:maxLines="20"
+            android:paddingBottom="0dp"
+            android:visibility="@{viewModel.overview != null ? View.VISIBLE : View.GONE}"
+            app:from_html="@{String.format(`&lt;i&gt;Overview&lt;/i&gt;&lt;br&gt;%s`, viewModel.overview)}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/movie_image"
+            tools:text="Overview\nDuring the 1980s, a failed stand-up comedian is driven insane and turns to a life of crime and chaos in Gotham City while becoming an infamous psychopathic crime figure." />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cast_tv"
+            style="@style/DetailsRow"
+            android:gravity="left"
+            android:maxLines="20"
+            android:paddingTop="0dp"
+            android:visibility="@{viewModel.cast != null ? View.VISIBLE : View.GONE}"
+            app:cast="@{viewModel.cast}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/overview_tv"
+            tools:text="Cast\nBo Jackson, Pat Dye, Cameron Newton" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,6 +1,30 @@
-query GetMoviesQuery {
-  movies {
+query GetMovie($id:Int!) {
+  movie (
+    id: $id
+  ) {
+    id
+    originalLanguage
+    originalTitle
+    overview
+    popularity
+    posterPath
+    releaseDate
+    voteAverage
+    voteCount
     title
+    budget
+    runtime
+    genres
+    cast {
+      profilePath
+      name
+      character
+      order
+    }
+    director {
+      id
+      name
+    }
   }
 }
 

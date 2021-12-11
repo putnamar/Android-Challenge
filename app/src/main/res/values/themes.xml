@@ -11,6 +11,7 @@
     <style name="Theme.PodiumTechinalChallenge" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
 
+        <item name="android:fontFamily">sans-serif-condensed</item>
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>

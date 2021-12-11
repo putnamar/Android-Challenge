@@ -13,8 +13,10 @@ sealed class Result<out R> {
 
 class Repo {
 
-    suspend fun getMovies(): Result<GetMoviesQuery.Data?> {
-        val response = ApiClient.getInstance().movieClient.query(GetMoviesQuery()).await()
+    suspend fun getMovie(movieId: Int): Result<GetMovieQuery.Data?> {
+        val response = ApiClient.getInstance().movieClient.query(
+            GetMovieQuery(id = movieId)
+        ).await()
         return if (response.data != null) {
             Result.Success(response.data)
         } else {
@@ -48,6 +50,7 @@ class Repo {
             Result.Error(java.lang.Exception())
         }
     }
+
     suspend fun getGenres(): Result<GetAllGenresQuery.Data?> {
         val response = ApiClient.getInstance().movieClient.query(GetAllGenresQuery()).await()
         return if (response.data != null) {
@@ -56,6 +59,7 @@ class Repo {
             Result.Error(java.lang.Exception())
         }
     }
+
     suspend fun topMovies(count: Int = 5): Result<MovieSearchQuery.Data?> {
         val response = ApiClient.getInstance().movieClient.query(
             MovieSearchQuery(

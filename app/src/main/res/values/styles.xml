@@ -11,6 +11,11 @@
         <item name="cornerSize">10dp</item>
     </style>
 
+    <style name="ShapeAppearanceOverlay.App.Dialog" parent="">
+        <item name="cornerSizeTopLeft">10dp</item>
+        <item name="cornerSizeTopRight">10dp</item>
+    </style>
+
     <style name="MovieTitle">
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
@@ -18,6 +23,19 @@
         <item name="android:maxLines">2</item>
         <item name="android:ellipsize">end</item>
         <item name="android:textAppearance">?android:attr/textAppearanceSmall</item>
+        <item name="android:autoSizeTextType">uniform</item>
+        <item name="android:autoSizeMaxTextSize">16sp</item>
+        <item name="android:autoSizeMinTextSize">12sp</item>
+    </style>
+
+    <style name="DetailsRow">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
         <item name="android:autoSizeTextType">uniform</item>
         <item name="android:autoSizeMaxTextSize">16sp</item>
         <item name="android:autoSizeMinTextSize">12sp</item>
