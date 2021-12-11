@@ -175,7 +175,7 @@
             android:maxLines="20"
             android:paddingBottom="0dp"
             android:visibility="@{viewModel.overview != null ? View.VISIBLE : View.GONE}"
-            app:from_html="@{String.format(`&lt;i&gt;Overview&lt;/i&gt;&lt;br&gt;%s`, viewModel.overview)}"
+            app:from_html="@{String.format(`&lt;i&gt;Overview&lt;/i&gt;&lt;br&gt;%s`, viewModel.overview.trim)}"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/movie_image"

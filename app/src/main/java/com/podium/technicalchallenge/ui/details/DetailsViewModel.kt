@@ -11,14 +11,19 @@ import com.podium.technicalchallenge.util.ObservableViewModel
 import com.podium.technicalchallenge.util.TAG
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.*
 
 class DetailsViewModel : ObservableViewModel() {
 
     @Bindable
     var originalLanguage: String? = null
         set(value) {
-            if (field != value) {
-                field = value
+            if (value == null) {
+                field = null
+                notifyPropertyChanged(BR.originalLanguage)
+            } else if (field != value) {
+                val tag = Locale.forLanguageTag(value)
+                field = tag.getDisplayLanguage(tag)
                 notifyPropertyChanged(BR.originalLanguage)
             }
         }
@@ -121,6 +126,7 @@ class DetailsViewModel : ObservableViewModel() {
                 notifyPropertyChanged(BR.genres)
             }
         }
+
     @Bindable
     var cast: List<GetMovieQuery.Cast>? = null
         set(value) {
@@ -129,6 +135,7 @@ class DetailsViewModel : ObservableViewModel() {
                 notifyPropertyChanged(BR.cast)
             }
         }
+
     @Bindable
     var director: GetMovieQuery.Director? = null
         set(value) {

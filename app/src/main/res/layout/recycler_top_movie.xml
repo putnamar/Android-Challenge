@@ -17,8 +17,7 @@
         android:clickable="true"
         android:foreground="?attr/selectableItemBackgroundBorderless"
         app:click_listeners="@{movie.posterPath}"
-        app:movie_id="@{movie.id}"
-       >
+        app:movie_id="@{movie.id}">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/movie_image"

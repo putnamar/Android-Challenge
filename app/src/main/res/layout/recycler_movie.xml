@@ -15,7 +15,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:orientation="horizontal">
+        android:clickable="true"
+        android:foreground="?attr/selectableItemBackgroundBorderless"
+        android:orientation="horizontal"
+        app:click_listeners="@{movie.posterPath}"
+        app:movie_id="@{movie.id}">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/movie_image"
