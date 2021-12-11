@@ -7,11 +7,16 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.PagingData
 import com.podium.technicalchallenge.databinding.FragmentBrowseBinding
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class BrowseFragment : Fragment() {
+interface LoadPagingData {
+    fun invalidatePagingData()
+}
+
+class BrowseFragment : Fragment(), LoadPagingData {
     private val viewModel: BrowseViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -21,18 +26,22 @@ class BrowseFragment : Fragment() {
     ): View {
         val binding = FragmentBrowseBinding.inflate(inflater)
         binding.viewModel = viewModel
-        val pagingAdapter = MovieAdapter(viewModel.diff)
 
-        binding.browseRecycler.adapter = pagingAdapter
+        binding.browseRecycler.adapter = viewModel.pagingAdapter
 
-        lifecycleScope.launch {
-            viewModel.pagedList.flow.collectLatest { pagingData ->
-                pagingAdapter.submitData(pagingData)
-            }
-        }
-
+        invalidatePagingData()
+        viewModel.setPagingDataCallback(this)
 
         return binding.root
+    }
+
+    override fun invalidatePagingData() {
+        viewModel.pagingAdapter.submitData(lifecycle, PagingData.empty())
+        lifecycleScope.launch {
+            viewModel.pagedList.flow.collectLatest { pagingData ->
+                viewModel.pagingAdapter.submitData(pagingData)
+            }
+        }
     }
 
     companion object {

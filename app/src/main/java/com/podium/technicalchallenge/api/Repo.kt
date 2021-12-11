@@ -24,11 +24,13 @@ class Repo {
         }
     }
 
-    suspend fun getMoviePage(offset: Int, size: Int): Result<GetMoviesPageQuery.Data?> {
+    suspend fun getMoviePage(offset: Int, size: Int, sortBy: String, ascending: Boolean): Result<GetMoviesPageQuery.Data?> {
         val response = ApiClient.getInstance().movieClient.query(
             GetMoviesPageQuery(
                 offset = Input.optional(offset),
-                limit = Input.optional(size)
+                limit = Input.optional(size),
+                orderBy = Input.optional(sortBy),
+                sort = Input.optional(if (ascending) Sort.ASC else Sort.DESC)
             )
         ).await()
         return if (response.data != null) {

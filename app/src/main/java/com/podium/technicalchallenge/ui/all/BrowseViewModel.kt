@@ -1,22 +1,21 @@
 package com.podium.technicalchallenge.ui.all
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
-import androidx.paging.Pager
-import androidx.paging.PagingConfig
-import androidx.paging.PagingSource
-import androidx.paging.PagingState
+import androidx.paging.*
 import androidx.recyclerview.widget.DiffUtil
 import com.podium.technicalchallenge.GetMoviesPageQuery
 import com.podium.technicalchallenge.Repo
 import com.podium.technicalchallenge.Result
+import com.podium.technicalchallenge.util.SortableObservableViewModel
 import com.podium.technicalchallenge.util.TAG
 import java.util.*
 
-class BrowseViewModel : ViewModel() {
+class BrowseViewModel : SortableObservableViewModel() {
     private val PAGE_SIZE = 12
+    private var pagingDataCallback: LoadPagingData? = null
 
     val pagedList: Pager<Int, GetMoviesPageQuery.Movie>
+
     val diff: DiffUtil.ItemCallback<GetMoviesPageQuery.Movie> =
         object : DiffUtil.ItemCallback<GetMoviesPageQuery.Movie>() {
             override fun areItemsTheSame(
@@ -33,6 +32,8 @@ class BrowseViewModel : ViewModel() {
                 return Objects.equals(oldItem, newItem)
             }
         }
+
+    val pagingAdapter = MovieAdapter(diff)
 
     init {
         pagedList = Pager(
@@ -65,12 +66,20 @@ class BrowseViewModel : ViewModel() {
         }
     }
 
+    fun setPagingDataCallback(callback: LoadPagingData) {
+        pagingDataCallback = callback
+    }
+
+    override fun invalidateOrder() {
+        pagingDataCallback?.invalidatePagingData()
+    }
+
     private suspend fun fetchMoviePage(
         start: Int,
         size: Int
     ): List<GetMoviesPageQuery.Movie>? {
         val result = try {
-            Repo.getInstance().getMoviePage(start, size)
+            Repo.getInstance().getMoviePage(start, size, sortColumn, sortOrder)
         } catch (e: Exception) {
             Result.Error(e)
         }

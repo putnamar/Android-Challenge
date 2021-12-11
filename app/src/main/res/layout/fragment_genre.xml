@@ -33,7 +33,8 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="@color/divider_color"
-            app:strokeWidth="1dp" />
+            app:strokeWidth="1dp"
+            tools:text="Vote Average" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/sort_order"
@@ -52,7 +53,8 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:strokeColor="@color/divider_color"
-            app:strokeWidth="1dp" />
+            app:strokeWidth="1dp"
+            tools:text="ASC" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/genre_recycler"

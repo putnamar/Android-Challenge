@@ -15,7 +15,6 @@ import com.podium.technicalchallenge.util.showInputMethod
 
 class MainActivity : AppCompatActivity() {
     // TODO: Search View
-    // TODO: Make by Genre into By Category
     // TODO: Adjust gridlayoutmanagers for screen size
     // TODO: Make top count dependent on screen size
     // TODO: Common movie class

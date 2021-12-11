@@ -5,17 +5,69 @@
     tools:context=".ui.all.BrowseFragment">
 
     <data>
+
         <variable
             name="viewModel"
             type="com.podium.technicalchallenge.ui.all.BrowseViewModel" />
     </data>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/browse_recycler"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="@integer/all_span"
-        tools:listitem="@layout/recycler_browse" />
+        android:layout_height="match_parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sort_chooser"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="4dp"
+            android:drawableRight="@drawable/ic_carrot"
+            android:drawableTint="@color/divider_color"
+            android:onClick="@{v -> viewModel.onCategoryClick(v)}"
+            android:text="@{viewModel.displayColumn}"
+            android:textColor="@color/divider_color"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/browse_recycler"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/divider_color"
+            app:strokeWidth="1dp"
+            tools:text="Vote Average" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sort_order"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="4dp"
+            android:drawableRight="@drawable/ic_carrot"
+            android:drawableTint="@color/divider_color"
+            android:onClick="@{v -> viewModel.onOrderClick(v)}"
+            android:text="@{viewModel.displayOrder}"
+            android:textColor="@color/divider_color"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/browse_recycler"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:strokeColor="@color/divider_color"
+            app:strokeWidth="1dp"
+            tools:text="ASC" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/browse_recycler"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/sort_chooser"
+            app:spanCount="@integer/all_span"
+            tools:listitem="@layout/recycler_browse" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
