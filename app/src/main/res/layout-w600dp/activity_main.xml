@@ -38,7 +38,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:menu="@menu/navigation_rail_menu"
-            app:onItemSelectedListener="@{item -> viewModel.onItemSelected(navigationViewTablet, navHost, item)}" />
+            app:onItemSelectedListener="@{item -> viewModel.onItemSelected(navHost, item)}" />
 
         <net.cachapa.expandablelayout.ExpandableLayout
             android:id="@+id/expandable_search_layout"

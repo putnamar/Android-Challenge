@@ -4,10 +4,7 @@ import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.widget.SearchView
 import androidx.databinding.Bindable
-import androidx.navigation.NavOptionsBuilder
 import androidx.navigation.Navigation
-import androidx.navigation.navOptions
-import com.google.android.material.navigation.NavigationBarView
 import com.podium.technicalchallenge.BR
 import com.podium.technicalchallenge.R
 import com.podium.technicalchallenge.search.SearchRepo
@@ -43,7 +40,7 @@ class MainViewModel : ObservableViewModel() {
         expanded = !expanded
     }
 
-    fun onItemSelected(navBar: NavigationBarView, navHost: View, item: MenuItem): Boolean {
+    fun onItemSelected(navHost: View, item: MenuItem): Boolean {
         val navController = Navigation.findNavController(navHost)
 
         return when (item.itemId) {
@@ -72,11 +69,6 @@ class MainViewModel : ObservableViewModel() {
                 true
             }
             R.id.search -> {
-                if (navController.currentDestination?.id != R.id.navigation_browse) {
-                    navController.navigate(R.id.action_browse)
-                    navBar.selectedItemId = R.id.navigation_browse
-                    navBar.selectedItemId = R.id.all
-                }
                 onSearchClick()
                 false
             }
