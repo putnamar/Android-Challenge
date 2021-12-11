@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Moviefone by Kramer</string>
+    <string name="app_name">Movie Browser</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_top_5">Top</string>
     <string name="title_genre">Genre</string>

@@ -17,10 +17,8 @@ import com.podium.technicalchallenge.util.showInputMethod
 
 
 class MainActivity : AppCompatActivity() {
-    // TODO: Tablet mode search doesn't change nav view
-    // TODO: Poster goes away after time
     // TODO: Common movie class
-    // TODO: Database?
+    // TODO: Database
     // TODO: Save User Settings
 
     private lateinit var binding: ActivityMainBinding

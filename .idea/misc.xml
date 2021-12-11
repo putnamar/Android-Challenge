@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/drawable/bg_gradient.xml" value="0.36709401709401707" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/drawable/ic_genre.xml" value="0.36244725738396627" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.4473958333333333" />
+        <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/drawable/ic_notifications_black_24dp.xml" value="0.36709401709401707" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/drawable/ic_star_rating.xml" value="0.44375" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/drawable/ic_star_scaled.xml" value="0.44375" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/drawable/search_suggestions_bg.xml" value="0.275" />
@@ -23,7 +25,7 @@
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/layout/recycler_browse.xml" value="0.43125" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/layout/recycler_genre.xml" value="0.43125" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/layout/recycler_movie.xml" value="0.43125" />
-        <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/layout/recycler_top_movie.xml" value="0.1" />
+        <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/layout/recycler_top_movie.xml" value="0.4" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/layout/view_movie_poster.xml" value="0.39166666666666666" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/menu/bottom_nav_menu.xml" value="0.43125" />
         <entry key="..\:/PersonalTmp/podium/Android-Challenge/app/src/main/res/menu/navigation_rail_menu.xml" value="0.43125" />
