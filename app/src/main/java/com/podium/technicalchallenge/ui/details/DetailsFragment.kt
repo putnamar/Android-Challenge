@@ -4,13 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.podium.technicalchallenge.databinding.FragmentMovieDetailsBinding
 
 class DetailsFragment : BottomSheetDialogFragment() {
-
-    private val viewModel: DetailsViewModel by activityViewModels()
     private var movieId: Int? = null
 
     override fun onCreateView(
@@ -20,6 +18,8 @@ class DetailsFragment : BottomSheetDialogFragment() {
     ): View {
         movieId = arguments?.getInt(ARG_MOVIE_ID)
 
+        val viewModel: DetailsViewModel =
+            ViewModelProvider(this).get(movieId.toString(), DetailsViewModel::class.java)
         viewModel.loadMovie(movieId)
         return FragmentMovieDetailsBinding.inflate(inflater).also {
             it.viewModel = viewModel

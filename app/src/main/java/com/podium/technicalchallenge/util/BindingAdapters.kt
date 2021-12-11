@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.Html
 import android.view.GestureDetector
@@ -49,12 +50,14 @@ object BindingAdapters {
             .setView(binding.root)
             .show()
         dialog.window?.also { win ->
+
             win.attributes?.also { lp ->
                 lp.dimAmount = 0.8f
                 win.attributes = lp
 
             }
             win.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
+            win.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         }
 
         binding.posterPath = path
